@@ -2,7 +2,7 @@
 # standalone compilation
 /bin/cp ../meta/makefile.mk .
 /bin/cp makefile.mk.nolibs ../meta/makefile.mk
-make -f makefile.en V=1 app 
+make -j -f makefile.en V=1 app
 /bin/cp makefile.mk ../meta
 # remove relocations in the app (save about 600Ko)
 g++ reloc.cc -o reloc

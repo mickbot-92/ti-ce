@@ -3,7 +3,7 @@
 #/bin/cp ../meta/makefile.mk .
 #/bin/cp makefile.mk.nolibs ../meta/makefile.mk
 ln -sf app_tools/app_src2 app_tools/app_src
-make -f makefile.fr V=1 app 
+make -j -f makefile.fr V=1 app
 ln -sf app_tools/app_src1 app_tools/app_src
 #/bin/cp makefile.mk ../meta
 # remove relocations in the app (save about 600Ko)
@@ -18,6 +18,6 @@ echo "Francais done"
 # local install, assumes you have a link to a folder shared/ti with artifice
 /bin/cp bin/DEMO.8* shared/ti
 rm -rf shared/ti/app && mkdir -p shared/ti/app && cp bin/App*x* shared/ti/app 
-echo "Runnig ./bundle83 to make khicas83.b83 (run ./bundle84 to test French on a 84)"
+echo "Running ./bundle83 to make khicas83.b83 (run ./bundle84 to test French on a 84)"
 ./bundle83
 ls -l shared/ti/DEMO.8ek
