@@ -1,0 +1,40 @@
+#include <cmath>
+#include <errno.h>
+#include <iostram>
+
+#define	sqrto2	0.707106781186548
+  double my_ln(double arg){
+    double x,z, z2, temp;
+    int exp;
+    
+    if (arg<=0.0) {
+      errno = EDOM;
+      return -HUGE_VALF;
+    }
+    x = frexpf(arg, & exp);
+    if (x<sqrto2){
+      x *= 2;
+      exp--;
+    }
+    // now x is in [sqrt(2)/2,sqrt(2)]
+    // ln(x)=ln((1+z)/(1-z)) where z=(x-1)/(x+1) is such that |z|<=3-2*sqrt(2)
+    // = z*sum( (z^2)^k/(2k+1),k=0..inf)
+    // for float precision, k=4 is enough, relative precision 2e-9/(1-|z|^2)
+    z = (x-1)/(x+1);
+    z2 = z*z;
+    // 0.111111111111*z2^4+0.142857142857*z2^3+0.2*z2^2+0.333333333333*z2+1.0
+    temp = (((0.111111111111*z2+0.142857142857)*z2+0.2)*z2+0.333333333333)*z2+1.0;
+    temp = temp*z + exp*M_LN2;
+    return temp;
+  }
+
+int main(){
+  double maxerr=0,xmin=0,xmax=10,nstep=1000,xstep=(xmax-xmin)/nstep,x=xmin;
+  for (int i=0;i<nstep;++i){
+    x += xstep;
+    double err=fabs(my_log(x)/std::log(x)-1);
+    if (err>maxerr)
+      maxerr=err;
+  }
+  std::cerr << maxerr << "\n";
+}

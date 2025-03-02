@@ -1,0 +1,124 @@
+#ifndef _IOSTREAM
+#define _IOSTREAM
+#include "mistream.h"
+#include "mostream.h"
+#include "ustring.h"
+#include "uvector.h"
+#include "umap.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+void dConsolePut(const char *);
+void dConsolePutChar(const char );
+
+struct stdostream {
+};
+
+struct stdistream {
+};
+
+inline stdostream & operator << (stdostream & os,int i){
+  char buf[256];
+  sprintf(buf,"%d",i);
+  dConsolePut(buf);
+  return os;
+}
+
+inline stdostream & operator << (stdostream & os,unsigned i){
+  char buf[256];
+  sprintf(buf,"%u",i);
+  dConsolePut(buf);
+  return os;
+}
+
+inline stdostream & operator << (stdostream & os,char ch){
+  dConsolePutChar(ch);
+  return os;
+}
+
+inline stdostream & operator << (stdostream & os,double d){
+  char buf[256];
+  sprintf(buf,"%f",d);
+  dConsolePut(buf);
+  return os;
+}
+
+inline stdostream & operator << (stdostream & os,const char * s){
+  dConsolePut(s);
+  return os;
+}
+
+inline stdostream & operator << (stdostream & os,const ustl::string & s){
+  dConsolePut(s.c_str());
+  return os;  
+}
+
+template<class T>
+  stdostream & operator << (stdostream & os,const ustl::vector<T> & v){
+  size_t s=v.size();
+  os << "[";
+  for (size_t i=0;i<s;++i){
+    os << v[i] ;
+    if (i!=s-1)
+      os << ",";
+  }
+  os << "]";
+  return os;
+}
+
+template<class T,class U>
+  stdostream & operator << (stdostream & os,const ustl::map<T,U> & v){
+  os << "{";
+  typename ustl::map<T,U>::const_iterator it=v.begin(),itend=v.end();
+  for (;it!=itend;){
+    os << it->first << ":" << it->second ;
+    ++it;
+    if (it!=itend)
+      os << ",";
+  }
+  os << "}";
+  return os;
+}
+
+extern stdostream cout;
+
+inline stdistream & operator >> (stdistream & os,char & ch){
+  ch=getchar();
+  return os;
+}
+
+inline stdistream & operator >> (stdistream & os,char * s){
+  int i;
+  for (i=0;i<255;i++){
+    char ch; os >> ch;
+    if (ch<32 || ch>=127)
+      break;
+    s[i]=ch;
+  }
+  s[i]=0;
+  return os;
+}
+
+inline stdistream & operator >> (stdistream & os,int & i){
+  char s[256];
+  os >> s;
+  i=strtol(s,0,10);
+  return os;
+}
+
+inline stdistream & operator >> (stdistream & os,unsigned &i){
+  char s[256];
+  os >> s;
+  i=strtol(s,0,10);
+  return os;
+}
+
+inline stdistream & operator >> (stdistream & os,double & d){
+  char s[256];
+  os >> s;
+  d=strtod(s,0);
+  return os;
+}
+
+extern stdistream cin;
+#endif

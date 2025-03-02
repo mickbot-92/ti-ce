@@ -1,0 +1,11 @@
+#ifndef CALC_H
+#define CALC_H
+#define STATUS_AREA_PX 24
+#if defined NUMWORKS || defined NSPIRE_NEWLIB || defined TICE
+#include "k_csdk.h"
+#endif
+#if defined FX || defined FXCG
+#include "casio.h"
+#endif
+
+#endif // CALC_H
