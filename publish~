@@ -1,7 +1,0 @@
-#! /bin/bash
-/bin/rm ~/ti83/khicas83.zip
-zip ~/ti83/khicas83.zip install
-cd ~/shared/ti
-zip -r ~/ti83/khicas83.zip APPINST.8xp LibLoad.8xv app/
-scp ~/ti83/khicas83.zip malherbe:public_html/tmp
-scp ~/shared/ti/DEMO.8ek malherbe:public_html/tmp
