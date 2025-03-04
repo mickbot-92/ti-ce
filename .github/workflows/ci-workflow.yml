@@ -6,11 +6,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build toolchain
+        run: |
+          git clone https://github.com/CE-Programming/toolchain.git
+          cd toolchain
+          git submodule update --init --recursive
+          wget -q https://github.com/CE-Programming/llvm-project/releases/download/nightly/ez80-clang-link_ubuntu_nightly.zip
+          unzip -q ez80-clang-link_ubuntu_nightly.zip
+          wget -q https://flatassembler.net/fasmg.kp60.zip
+          unzip -q fasmg.kp60.zip
+          ls -l && ls -l /usr/local/bin/
       - name: Install toolchain
         run: |
-          wget -q https://github.com/CE-Programming/toolchain/releases/download/nightly/CEdev-Linux-nightly.tar.gz
-          tar -xvf CEdev-Linux-nightly.tar.gz
-          ls -l
+          cd ..
+          pwd
+          #sed -i '/-i $(call QUOTE_ARG,library $(LDLIBS))/d' CEdev/meta/makefile.mk
       - run: ./mkappfr
       - uses: actions/upload-artifact@v4
         with:
