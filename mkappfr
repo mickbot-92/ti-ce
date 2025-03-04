@@ -21,4 +21,6 @@ echo "Francais done"
 #echo "Running ./bundle83 to make khicas83.b83 (run ./bundle84 to test French on a 84)"
 #./bundle83
 #ls -l shared/ti/DEMO.8ek
-ls -l bin/
+rm bin/*.bin
+/bin/cp app_tools/INST.8xp bin/
+zip KhiCAS.zip bin/*
