@@ -20,6 +20,7 @@ jobs:
         run: |
           export PATH=$PWD/CEdev/bin:$PATH
           cd ..
+          pwd && ls -l
           ./mkappfr
       - uses: actions/upload-artifact@v4
         with:
