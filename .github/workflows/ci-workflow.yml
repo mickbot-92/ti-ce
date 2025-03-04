@@ -19,7 +19,6 @@ jobs:
       - name: Build KhiCAS
         run: |
           export PATH=$PWD/CEdev/bin:$PATH
-          cd ..
           pwd && ls -l
           ./mkappfr
       - uses: actions/upload-artifact@v4
