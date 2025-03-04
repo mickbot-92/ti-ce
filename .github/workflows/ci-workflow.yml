@@ -25,5 +25,5 @@ jobs:
           ./mkappfr
       - uses: actions/upload-artifact@v4
         with:
-          name: DEMO.8ek
-          path: shared/ti/DEMO.8ek
+          name: KhiCAS.zip
+          path: KhiCAS.zip
