@@ -6,20 +6,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build toolchain
+      - name: Build & Install CE toolchain
         run: |
-          git clone https://github.com/CE-Programming/toolchain.git
+          git clone --recursive https://github.com/CE-Programming/toolchain.git
           cd toolchain
-          git submodule update --init --recursive
-          wget -q https://github.com/CE-Programming/llvm-project/releases/download/nightly/ez80-clang-link_ubuntu_nightly.zip
-          unzip -q ez80-clang-link_ubuntu_nightly.zip
-          wget -q https://flatassembler.net/fasmg.kp60.zip
-          unzip -q fasmg.kp60.zip
-          ls -l && ls -l /usr/local/bin/
+          wget -q https://github.com/CE-Programming/llvm-project/releases/download/nightly/ez80-clang-link_ubuntu_nightly.zip && unzip -q ez80-clang-link_ubuntu_nightly.zip && rm ez80-clang-link_ubuntu_nightly.zip && sudo mv ez80-* /usr/local/bin/
+          wget -q https://flatassembler.net/fasmg.kp60.zip && unzip -q fasmg.kp60.zip && sudo mv fasmg.x64 /usr/local/bin/fasmg && rm fasmg*
+          cp ../allocator_standard.c src/libc/
+          make
+          make install DESTDIR=$PWD
+          ls -l
       - name: Install toolchain
         run: |
-          cd ..
-          pwd
           #sed -i '/-i $(call QUOTE_ARG,library $(LDLIBS))/d' CEdev/meta/makefile.mk
       - run: ./mkappfr
       - uses: actions/upload-artifact@v4
