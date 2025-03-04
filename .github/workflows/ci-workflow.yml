@@ -16,7 +16,7 @@ jobs:
           make
           make install DESTDIR=$PWD
           sed -i '/-i $(call QUOTE_ARG,library $(LDLIBS))/d' CEdev/meta/makefile.mk
-          pwd && ls -l
+          sudo mv /usr/local/bin/fasmg /usr/local/bin/ez80-* CEdev/bin/
       - name: Build KhiCAS
         run: |
           export PATH=$PWD/toolchain/CEdev/bin:$PATH
