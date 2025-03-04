@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build & Install CE toolchain
+      - name: Build CE toolchain
         run: |
           git clone --recursive https://github.com/CE-Programming/toolchain.git
           cd toolchain
@@ -15,11 +15,12 @@ jobs:
           cp ../allocator_standard.c src/libc/
           make
           make install DESTDIR=$PWD
-          ls -l
-      - name: Install toolchain
+          sed -i '/-i $(call QUOTE_ARG,library $(LDLIBS))/d' CEdev/meta/makefile.mk
+      - name: Build KhiCAS
         run: |
-          #sed -i '/-i $(call QUOTE_ARG,library $(LDLIBS))/d' CEdev/meta/makefile.mk
-      - run: ./mkappfr
+          export PATH=$PWD/CEdev/bin:$PATH
+          cd ..
+          ./mkappfr
       - uses: actions/upload-artifact@v4
         with:
           name: DEMO.8ek
