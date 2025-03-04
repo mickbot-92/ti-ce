@@ -10,6 +10,7 @@ jobs:
         run: |
           git clone --recursive https://github.com/CE-Programming/toolchain.git
           cd toolchain
+          git checkout f92e4d0a12da1e7b7ced3c7dbba0e5d9727b8add
           wget -q https://github.com/CE-Programming/llvm-project/releases/download/nightly/ez80-clang-link_ubuntu_nightly.zip && unzip -q ez80-clang-link_ubuntu_nightly.zip && rm ez80-clang-link_ubuntu_nightly.zip && sudo mv ez80-* /usr/local/bin/
           wget -q https://flatassembler.net/fasmg.kp60.zip && unzip -q fasmg.kp60.zip && sudo mv fasmg.x64 /usr/local/bin/fasmg && rm fasmg*
           cp ../allocator_standard.c src/libc/
