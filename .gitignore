@@ -37,6 +37,7 @@ bin/
 
 # Executables
 reloc
+shared/ti/
 *.exe
 *.out
 *.app
