@@ -8,12 +8,11 @@
 
 ### Prerequisites
 
-Get the latest CE toolchain https://github.com/CE-Programming/toolchain
+Clone the CE toolchain https://github.com/CE-Programming/toolchain  
 (See docs: https://ce-programming.github.io/toolchain/)
 
-Modifications of the toolchain:
- * so that malloc uses upper part of LCD ram for heap and aborts instead of returning a null pointer that is not handled correctly, copy [allocator_standard.c](allocator_standard.c) to toolchain/src/libc/allocator_standard.c and rebuild&install the toolchain.
- * in your toolchain, edit `meta/makefile.mk` to remove the line `-i $(call QUOTE_ARG,library $(LDLIBS)) \`.
+Required modification of the toolchain:  
+So that malloc uses upper part of LCD ram for heap and aborts instead of returning a null pointer that is not handled correctly, copy [allocator_standard.c](allocator_standard.c) to toolchain/src/libc/allocator_standard.c and rebuild&install the toolchain.
 
 ### KhiCAS build
 
