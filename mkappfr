@@ -1,11 +1,8 @@
 #! /bin/bash
 # standalone compilation
-#/bin/cp ../meta/makefile.mk .
-#/bin/cp makefile.mk.nolibs ../meta/makefile.mk
 ln -sf app_tools/app_src2 app_tools/app_src
 make -j -f makefile.fr V=1 app
 ln -sf app_tools/app_src1 app_tools/app_src
-#/bin/cp makefile.mk ../meta
 # remove relocations in the app (save about 600Ko)
 g++ reloc.cc -o reloc
 cd bin
