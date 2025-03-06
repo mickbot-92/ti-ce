@@ -1,4 +1,8 @@
-# KhiCAS
+# KhiCAS CE
+
+**An XCAS port for the TI-84 Plus CE / TI-83 Premium CE calculators.**
+
+![KhiCAS Screenshots](screenshot.jpg)
 
 ## Compilation:
 
@@ -21,7 +25,7 @@ will create in bin a lot of 8xv variables and an installer (8xp)
 `bundle83` or `bundle84` will bundle these 8xv files and the installer.
 
 ## Installation on a hardware calculator:
-see [install_en.txt](install_en.txt) or [install_fr.txt](install_fr.txt).
+See [install_en.txt](install_en.txt) or [install_fr.txt](install_fr.txt).
 
 ## Build customization:
 Some compile flags control inclusion of parts of the code.
