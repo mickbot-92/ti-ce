@@ -36,6 +36,7 @@ bin/
 *.dylib
 
 # Executables
+reloc
 *.exe
 *.out
 *.app
