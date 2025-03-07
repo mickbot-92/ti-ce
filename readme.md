@@ -8,11 +8,8 @@
 
 ### Prerequisites
 
-Clone the CE toolchain https://github.com/CE-Programming/toolchain  
+Get the nightly CE toolchain https://github.com/CE-Programming/toolchain/releases/nightly  
 (See docs: https://ce-programming.github.io/toolchain/)
-
-Required modification of the toolchain:  
-So that malloc uses upper part of LCD ram for heap and aborts instead of returning a null pointer that is not handled correctly, copy [allocator_standard.c](allocator_standard.c) to toolchain/src/libc/allocator_standard.c and rebuild&install the toolchain.
 
 ### KhiCAS build
 
