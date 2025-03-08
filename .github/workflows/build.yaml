@@ -1,0 +1,68 @@
+name: Build KhiCAS CE
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  buildFrench:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: "Set up shared/ti/ folder"
+        run: |
+          mkdir -p shared/ti/
+          curl -sL https://github.com/YvanTT/arTIfiCE/releases/latest/download/arTIfiCE.8xv -o shared/ti/arTIfiCE.8xv
+          cp app_tools/INST.8xp shared/ti/INST.8xp
+
+      - name: Download and extract CEdev
+        run: |
+          curl -sL https://github.com/CE-Programming/toolchain/releases/download/nightly/CEdev-Linux-nightly.tar.gz | tar -xvzf - -C ~
+
+      - name: Build French version
+        run: |
+          export PATH=~/CEdev/bin:$PATH
+          make clean && ./mkappfr
+
+      - name: Prepare files for upload
+        run: |
+          mkdir upload
+          cp -R install_fr.txt shared/ti/app upload/
+
+      - name: Upload French version
+        uses: actions/upload-artifact@v4
+        with:
+          name: KhiCAS_CE_Francais
+          path: upload
+
+  buildEnglish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: "Set up shared/ti/ folder"
+        run: |
+          mkdir -p shared/ti/
+          curl -sL https://github.com/YvanTT/arTIfiCE/releases/latest/download/arTIfiCE.8xv -o shared/ti/arTIfiCE.8xv
+          cp app_tools/INST.8xp shared/ti/INST.8xp
+
+      - name: Download and extract CEdev
+        run: |
+          curl -sL https://github.com/CE-Programming/toolchain/releases/download/nightly/CEdev-Linux-nightly.tar.gz | tar -xvzf - -C ~
+
+      - name: Build English version
+        run: |
+          export PATH=~/CEdev/bin:$PATH
+          make clean && ./mkappen
+
+      - name: Prepare files for upload
+        run: |
+          mkdir upload
+          cp -R install_en.txt shared/ti/app upload/
+
+      - name: Upload English version
+        uses: actions/upload-artifact@v4
+        with:
+          name: KhiCAS_CE_English
+          path: upload

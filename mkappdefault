@@ -1,6 +1,3 @@
 #! /bin/bash
-/bin/cp ../meta/makefile.mk .
-/bin/cp makefile.mk.nolibs ../meta/makefile.mk
 make -j V=1 app install_prog && rm -rf shared/ti/app && mkdir -p shared/ti/app && cp bin/App*x* shared/ti/app && cp bin/APPINST.8xp shared/ti
-/bin/cp makefile.mk ../meta
 /bin/cp bin/DEMO.8* shared/ti

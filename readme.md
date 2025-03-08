@@ -1,15 +1,15 @@
-# KhiCAS
+# KhiCAS CE
+
+**An XCAS port for the TI-84 Plus CE / TI-83 Premium CE calculators.**
+
+![KhiCAS Screenshots](screenshot.jpg)
 
 ## Compilation:
 
 ### Prerequisites
 
-Get the latest CE toolchain https://github.com/CE-Programming/toolchain
+Get the nightly CE toolchain https://github.com/CE-Programming/toolchain/releases/nightly  
 (See docs: https://ce-programming.github.io/toolchain/)
-
-Modifications of the toolchain:
- * so that malloc uses upper part of LCD ram for heap and aborts instead of returning a null pointer that is not handled correctly, copy [allocator_standard.c](allocator_standard.c) to toolchain/src/libc/allocator_standard.c and rebuild&install the toolchain.
- * in your toolchain, edit `meta/makefile.mk` to remove the line `-i $(call QUOTE_ARG,library $(LDLIBS)) \`.
 
 ### KhiCAS build
 
@@ -21,7 +21,7 @@ will create in bin a lot of 8xv variables and an installer (8xp)
 `bundle83` or `bundle84` will bundle these 8xv files and the installer.
 
 ## Installation on a hardware calculator:
-see [install_en.txt](install_en.txt) or [install_fr.txt](install_fr.txt).
+See [install_en.txt](install_en.txt) or [install_fr.txt](install_fr.txt).
 
 ## Build customization:
 Some compile flags control inclusion of parts of the code.

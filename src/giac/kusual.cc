@@ -7682,7 +7682,7 @@ double my_tan(double arg){
       res=std::log((double) M_PI) -std::log(std::sin((double)M_PI*x)) - lngamma(1.-x);
 #endif
 #else
-      res=std::log(M_PIL) -std::log(std::sin(M_PIL*x)) - lngamma(1.L-x);
+      res=std::logl(M_PIL) -std::log(std::sin(M_PIL*x)) - lngamma(1.L-x);
 #endif
     }  else {
 #if !defined(HAVE_LONG_DOUBLE) || defined(PNACL)
