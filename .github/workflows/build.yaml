@@ -21,7 +21,7 @@ jobs:
 
       - name: Build French version
         run: |
-          tar -xf ez80-files.tar.xz && mv ez80-clang ez80-link ~/CEdev/bin/
+          tar -xf ez80-files.tar.xz && mv ez80-clang ez80-link ~/CEdev/bin/ && chmod +x ~/CEdev/bin/ez80-*
           export PATH=~/CEdev/bin:$PATH
           make clean && ./mkappfr
 
