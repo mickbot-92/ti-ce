@@ -25,7 +25,7 @@ then
   mkdir -p shared/ti/
 fi
 cp bin/DEMO.8* shared/ti/
-rm -rf shared/ti/app && mkdir -p shared/ti/app && cp bin/App*x* shared/ti/app
+rm -rf shared/ti/app && mkdir -p shared/ti/app && cp bin/App*x* shared/ti/app && ls -l bin/
 echo "Running ./bundle83 to make khicas83.b83 (run ./bundle84 to test French on a 84)"
 ./bundle83
 ls -l shared/ti/DEMO.8ek
